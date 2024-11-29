@@ -1,4 +1,4 @@
-# 模型配置
+# API配置
 api:
   base_url: "http://localhost:11434/api"
   timeout: 30
