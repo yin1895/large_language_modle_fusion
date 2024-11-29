@@ -1,0 +1,31 @@
+# API配置
+
+# 服务器设置
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  reload: true
+  
+# 安全设置
+security:
+  enable_cors: true
+  allowed_origins: ["*"]
+  api_keys_enabled: false
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 60
+
+# 响应设置
+response:
+  include_debug_info: false
+  include_timing: true
+  pretty_print: true
+  
+# 文档设置
+docs:
+  title: "Model Fusion API"
+  description: "API for fusion of multiple language model responses"
+  version: "1.0.0"
+  enable_swagger: true
+  enable_redoc: true 

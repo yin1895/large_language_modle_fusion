@@ -1,0 +1,32 @@
+# 系统全局配置
+
+# 路径配置
+paths:
+  models_config: "config/models_config.yaml"
+  fusion_config: "config/fusion_config.yaml"
+  logs: "logs"
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/system.log"
+
+# 默认设置
+defaults:
+  models: ["llama2:7b", "mistral:7b"]
+  fusion_method: "weighted"
+  timeout: 30  # 秒
+  max_retries: 3
+
+# 系统限制
+limits:
+  max_input_length: 2000
+  max_concurrent_requests: 10
+  max_models_per_request: 5
+
+# 缓存设置
+cache:
+  enabled: true
+  max_size: 1000
+  ttl: 3600  # 秒
