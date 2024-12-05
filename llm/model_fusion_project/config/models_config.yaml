@@ -6,23 +6,11 @@ api:
 # 迭代配置
 iteration:
   default_rounds: 3  # 默认迭代轮数
-  system_prompt: "请仔细思考上一轮的回答，并给出改进后的答案。如果认为已经是最优答案，请说明原因。"
+  system_prompt: "请仔细思考上一轮的回答，并给出改进后的答案以及原因。如果认为已经是最优答案，请直接给出答案。"
   max_rounds: 5  # 最大迭代轮数限制
 
-# 模型定义
-models:
-  - name: "qwen2"
-    type: "ollama"
-    parameters:
-      temperature: 0.7
-      max_tokens: 2000
-    metadata:
-      description: "Qwen2 通过Ollama API调用"
-      
-  - name: "qwen2.5-coder"
-    type: "ollama"
-    parameters:
-      temperature: 0.7
-      max_tokens: 2000
-    metadata:
-      description: "Qwen2.5 Coder 通过Ollama API调用"
+# 模型默认参数
+model_defaults:
+  parameters:
+    temperature: 0.7
+    max_tokens: 2000

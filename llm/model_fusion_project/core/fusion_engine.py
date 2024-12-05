@@ -23,22 +23,25 @@ class FusionEngine:
         responses: List[Dict[str, Any]],
         method: str = 'iterative'
     ) -> FusionResult:
-        """融合多个模型的响应"""
-        if not responses:
-            raise ValueError("没有可用的响应进行融合")
-
-        # 根据方法选择融合策略
+        """
+        根据指定方法融合响应
+        
+        Args:
+            responses: 响应列表
+            method: 融合方法 ('weighted', 'voting', 'best_confidence', 'iterative')
+        """
         fusion_methods = {
-            'iterative': self._iterative_fusion,
             'weighted': self._weighted_fusion,
             'voting': self._voting_fusion,
-            'best_confidence': self._best_confidence_fusion
+            'best_confidence': self._best_confidence_fusion,
+            'iterative': self._iterative_fusion
         }
-
+        
         if method not in fusion_methods:
             raise ValueError(f"不支持的融合方法: {method}")
-
-        return await fusion_methods[method](responses)
+        
+        fusion_func = fusion_methods[method]
+        return await fusion_func(responses)
 
     async def _iterative_fusion(
         self,

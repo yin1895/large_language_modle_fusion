@@ -41,6 +41,11 @@ class ModelFusionPipeline:
                     'rounds',
                     message="请输入每个模型的思考轮数（1-5）",
                     validate=lambda _, x: x.isdigit() and 1 <= int(x) <= 5
+                ),
+                inquirer.List(
+                    'fusion_method',
+                    message="请选择融合方法",
+                    choices=['weighted', 'voting', 'best_confidence', 'iterative']
                 )
             ]
             
@@ -52,12 +57,14 @@ class ModelFusionPipeline:
             selected_models = answers['selected_models']
             query = answers['query']
             rounds = int(answers['rounds'])
+            fusion_method = answers['fusion_method']
             
             # 处理查询
             result = await self.process_query(
                 query=query,
                 model_names=selected_models,
-                rounds=rounds
+                rounds=rounds,
+                fusion_method=fusion_method
             )
             
             # 显示结果
@@ -67,7 +74,8 @@ class ModelFusionPipeline:
         self,
         query: str,
         model_names: List[str],
-        rounds: int
+        rounds: int,
+        fusion_method: str
     ) -> Dict[str, Any]:
         """处理查询"""
         try:
@@ -84,7 +92,7 @@ class ModelFusionPipeline:
             # 融合结果
             fusion_result = await self.fusion_engine.fuse_responses(
                 processed_responses,
-                method='iterative'
+                method=fusion_method
             )
             
             return {

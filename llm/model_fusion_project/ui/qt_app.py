@@ -75,6 +75,16 @@ class MainWindow(QMainWindow):
         rounds_layout.addWidget(self.rounds_spin)
         left_layout.addLayout(rounds_layout)
         
+        # 融合方法选择
+        self.fusion_method_combo = QComboBox()
+        self.fusion_method_combo.addItems([
+            'weighted', 'voting', 'best_confidence', 'iterative'
+        ])
+        control_layout = QVBoxLayout()
+        control_layout.addWidget(QLabel("融合方法:"))
+        control_layout.addWidget(self.fusion_method_combo)
+        left_layout.addLayout(control_layout)
+        
         # 右侧面板（输入输出区）
         right_panel = QWidget()
         right_layout = QVBoxLayout()
@@ -138,7 +148,7 @@ class MainWindow(QMainWindow):
             # 融合结果
             fusion_result = await self.fusion_engine.fuse_responses(
                 processed_responses,
-                method='iterative'
+                method=self.fusion_method_combo.currentText()
             )
             
             # 显示结果

@@ -14,9 +14,11 @@
 
 1. 确保已安装 Python 3.8+ 和 Ollama
 
-2. 下载并解压项目文件
+2. 安装 CUDA 和 PyTorch
 
-3. 安装依赖：
+3. 下载并解压项目文件
+
+4. 安装依赖：
 ```bash
 cd model_fusion_project
 pip install -r requirements.txt
