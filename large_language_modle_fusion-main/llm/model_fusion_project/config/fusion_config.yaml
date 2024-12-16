@@ -1,0 +1,36 @@
+# 融合配置
+
+# 融合方法配置
+methods:
+  weighted:
+    description: "基于置信度的加权融合"
+    parameters:
+      min_weight: 0.1
+      normalize_weights: true
+      
+  voting:
+    description: "基于多数投票的融合"
+    parameters:
+      confidence_threshold: 0.6
+      min_votes: 2
+      
+  best_confidence:
+    description: "选择最高置信度的响应"
+    parameters:
+      min_confidence: 0.5
+
+# 后处理配置
+post_processing:
+  remove_duplicates: true
+  min_length: 10
+  max_length: 1000
+  
+# 评分配置
+scoring:
+  metrics:
+    - name: "length"
+      weight: 0.2
+    - name: "coherence"
+      weight: 0.4
+    - name: "confidence"
+      weight: 0.4

@@ -1,0 +1,23 @@
+# 测试工具
+pytest>=6.2.5
+pytest-asyncio>=0.16.0
+pytest-cov>=2.12.1
+pytest-benchmark>=3.4.1
+
+# 代码质量工具
+flake8>=3.9.2
+black>=21.9b0
+isort>=5.9.3
+mypy>=0.910
+
+# 文档工具
+Sphinx>=4.2.0
+sphinx-rtd-theme>=1.0.0
+
+# 调试工具
+ipython>=7.28.0
+ipdb>=0.13.9
+
+# 性能分析
+line_profiler>=3.3.1
+memory_profiler>=0.58.0 
